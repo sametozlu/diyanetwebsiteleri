@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %}{{ page.title }} | {{ t('site_name') }}{% endblock %}
+
+{% block content %}
+<section class="page-hero" style="--page-hero-bg: url('{{ images.education }}')">
+  <div class="container">
+    <span class="section-tag light">{{ page.tag }}</span>
+    <h1>{{ page.title }}</h1>
+    <p>{{ page.description }}</p>
+  </div>
+</section>
+
+<section class="page-content">
+  <div class="container content-narrow">
+    <article class="content-card hadith-showcase">
+      <span class="section-tag">{{ hadith.collection }}</span>
+      {% if hadith.arabic %}<p class="hadith-arabic">{{ hadith.arabic }}</p>{% endif %}
+      <blockquote class="hadith-quote">"{{ hadith.text }}"</blockquote>
+      {% if hadith.number %}<cite>— Hadis No: {{ hadith.number }}</cite>{% endif %}
+      <button class="btn btn-primary" id="newHadithBtn">Yeni Hadis Getir</button>
+    </article>
+
+    <div class="collections-grid">
+      <div class="collection-card"><h4>Sahih-i Buhari</h4><p>En sahih hadis kaynağı</p></div>
+      <div class="collection-card"><h4>Sahih-i Müslim</h4><p>İkinci temel hadis kaynağı</p></div>
+      <div class="collection-card"><h4>Riyâzü's-Sâlihîn</h4><p>Diyanet hadis külliyatı</p></div>
+      <div class="collection-card"><h4>40 Hadis</h4><p>İmam Nevevi'nin seçkisi</p></div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  document.getElementById('newHadithBtn')?.addEventListener('click', async () => {
+    const res = await fetch('/api/content/hadith');
+    const h = await res.json();
+    document.querySelector('.hadith-quote').textContent = `"${h.text}"`;
+    document.querySelector('.section-tag').textContent = h.collection;
+  });
+</script>
+{% endblock %}

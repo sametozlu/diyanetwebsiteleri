@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% block title %}{{ page.title }} | {{ t('site_name') }}{% endblock %}
+
+{% block content %}
+<section class="page-hero" style="--page-hero-bg: url('{{ images.quran }}')">
+  <div class="container">
+    <span class="section-tag light">{{ page.tag }}</span>
+    <h1>{{ page.title }}</h1>
+    <p>{{ page.description }}</p>
+  </div>
+</section>
+
+<section class="page-content">
+  <div class="container content-narrow">
+    <article class="content-card verse-showcase">
+      <span class="section-tag">Günün Ayeti</span>
+      {% if verse.chapter %}
+      <p class="verse-ref">Sure {{ verse.chapter }} · Ayet {{ verse.verse }}</p>
+      {% endif %}
+      {% if verse.arabic %}
+      <p class="verse-arabic-large">{{ verse.arabic }}</p>
+      {% endif %}
+      <blockquote class="verse-quote">{{ verse.turkish }}</blockquote>
+      {% if verse.english %}
+      <p class="verse-english">{{ verse.english }}</p>
+      {% endif %}
+      <button class="btn btn-primary" id="newVerseBtn">Yeni Ayet Getir</button>
+    </article>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>📖 Mushaf Görünümü</h3>
+        <p>Kur'an-ı Kerim'in orijinal Arapça metni, Diyanet onaylı mushaf görünümüyle okunabilir.</p>
+      </div>
+      <div class="info-card">
+        <h3>📝 Diyanet Meali</h3>
+        <p>Din İşleri Yüksek Kurulu tarafından hazırlanan Türkçe meal ve açıklamalar.</p>
+      </div>
+      <div class="info-card">
+        <h3>🎧 Tilavet</h3>
+        <p>Hafızlarımızın güzel sesleriyle Kur'an-ı Kerim dinleme imkânı.</p>
+      </div>
+      <div class="info-card">
+        <h3>📚 Tefsir</h3>
+        <p>Kur'an Yolu Tefsiri ve diğer güvenilir tefsir kaynaklarına erişim.</p>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  document.getElementById('newVerseBtn')?.addEventListener('click', async () => {
+    const res = await fetch('/api/content/verse');
+    const v = await res.json();
+    document.querySelector('.verse-quote').textContent = v.turkish;
+    if (v.arabic) document.querySelector('.verse-arabic-large').textContent = v.arabic;
+    if (v.chapter) document.querySelector('.verse-ref').textContent = `Sure ${v.chapter} · Ayet ${v.verse}`;
+  });
+</script>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block title %}{{ page.title }} | {{ t('site_name') }}{% endblock %}
+
+{% block content %}
+<section class="page-hero" style="--page-hero-bg: url('{{ images.kurban }}')">
+  <div class="container">
+    <span class="section-tag light">{{ page.tag }}</span>
+    <h1>{{ page.title }}</h1>
+    <p>{{ page.description }}</p>
+  </div>
+</section>
+
+<section class="page-content">
+  <div class="container">
+    <div class="kurban-grid">
+      <article class="content-card">
+        <h2>Kurban Nedir?</h2>
+        <p>Kurban; Allah'a yakınlaşmak niyetiyle, belirli vakitlerde kurbanlık hayvan kesmektir. Zilhicce ayının 10-13. günleri arasında vacip olan kurban, İslam'ın önemli ibadetlerindendir.</p>
+      </article>
+
+      <div class="steps-grid">
+        <div class="step-card"><span class="step-num">1</span><h4>Kimler Vacip?</h4><p>Nisap miktarı mala sahip, hür, akıllı ve mukim Müslümanlara vaciptir.</p></div>
+        <div class="step-card"><span class="step-num">2</span><h4>Kurbanlık Seçimi</h4><p>Koyun, keçi, sığır veya deve. Sağlıklı, yaş ve sayı şartlarına uygun olmalıdır.</p></div>
+        <div class="step-card"><span class="step-num">3</span><h4>Kesim Zamanı</h4><p>Bayramın 1., 2. ve 3. günleri kurban kesilebilir. En faziletli vakit bayram namazından sonradır.</p></div>
+        <div class="step-card"><span class="step-num">4</span><h4>Et Dağıtımı</h4><p>Kurban etinin üçte biri fakirlere, üçte biri komşulara, üçte biri kendine aittir.</p></div>
+      </div>
+
+      <div class="info-grid">
+        <div class="info-card">
+          <h3>🌍 Yurt Dışı Kurban</h3>
+          <p>Diyanet İşleri Başkanlığı aracılığıyla dünya genelinde ihtiyaç sahiplerine kurban ulaştırma organizasyonu.</p>
+        </div>
+        <div class="info-card">
+          <h3>📋 Vekâlet</h3>
+          <p>Kurbanınızı Diyanet'e vekil tayin ederek güvenle kestirebilirsiniz.</p>
+        </div>
+        <div class="info-card">
+          <h3>🕌 Bayram Namazı</h3>
+          <p>Kurban Bayramı namazı, kurban kesiminden önce kılınması sünnettir.</p>
+        </div>
+        <div class="info-card">
+          <h3>📖 İlmihal</h3>
+          <p>Kurban ibadetinin tüm detayları Diyanet İlmihali'nde yer almaktadır.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

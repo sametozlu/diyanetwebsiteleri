@@ -1,0 +1,180 @@
+{% extends 'base.html' %}
+{% block title %}{{ page.title }} | {{ t('site_name') }}{% endblock %}
+
+{% block content %}
+<section class="hero" style="--hero-bg: url('{{ images.hero }}')">
+  <div class="hero-overlay"></div>
+  <div class="container hero-grid">
+    <div class="hero-text">
+      <p class="hero-bismillah">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
+      <h1>{{ t('site_motto') }}</h1>
+      <p class="hero-desc">{{ page.hero_desc }}</p>
+      <div class="hero-actions">
+        <a href="{{ url_for('namaz_vakitleri') }}" class="btn btn-primary">{{ t('prayer_times') }}</a>
+        <a href="{{ url_for('radyo') }}" class="btn btn-outline">{{ t('listen_radio') }}</a>
+      </div>
+    </div>
+
+    <div class="prayer-card" id="homePrayerCard">
+      <div class="prayer-card-header">
+        <h2>{{ t('prayer_times') }}</h2>
+        <select class="city-select" id="homeCitySelect" data-redirect="false" aria-label="{{ t('select_city') }}">
+          {% for c in cities %}
+          <option value="{{ c }}" {% if c == city %}selected{% endif %}>{{ c }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="prayer-date">{{ prayer.gregorian }} · {{ prayer.hijri }}</div>
+      <div class="prayer-times">
+        {% for pt in prayer.timings %}
+        <div class="prayer-time-item {% if pt.key == prayer.active %}active{% endif %}" data-key="{{ pt.key }}">
+          <span class="prayer-label">{{ pt.label }}</span>
+          <span class="prayer-value">{{ pt.time }}</span>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="next-prayer">
+        <span>{{ t('next_prayer') }}: <strong>{{ prayer.next.label }}</strong></span>
+        <span class="next-countdown">{{ prayer.next.remaining }}</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="daily-content">
+  <div class="container">
+    <div class="daily-grid">
+      <article class="daily-card daily-verse">
+        <div class="daily-card-icon">📖</div>
+        <span class="section-tag">{{ t('verse_of_day') }}</span>
+        {% if verse.ref or verse.chapter %}<span class="daily-ref">{{ verse.ref or t('sure_ayet', sure=verse.chapter, ayet=verse.verse) }}</span>{% endif %}
+        {% if verse.arabic %}<p class="daily-arabic">{{ verse.arabic }}</p>{% endif %}
+        <p class="daily-text">{{ verse.text or verse.turkish }}</p>
+        <a href="{{ url_for('kuran') }}" class="link-arrow">{{ t('quran_link') }} →</a>
+      </article>
+
+      <article class="daily-card daily-hadith">
+        <div class="daily-card-icon">💬</div>
+        <span class="section-tag">{{ t('hadith_of_day') }}</span>
+        <span class="daily-ref">{{ hadith.collection }}{% if hadith.number %} · {{ t('hadith_no', no=hadith.number) }}{% endif %}</span>
+        <p class="daily-text">"{{ hadith.text }}"</p>
+        <a href="{{ url_for('hadis') }}" class="link-arrow">{{ t('hadith_link') }} →</a>
+      </article>
+
+      <article class="daily-card daily-name">
+        <div class="daily-card-icon">✨</div>
+        <span class="section-tag">{{ t('esma_title') }}</span>
+        <p class="daily-arabic esma-arabic">{{ esma.ar }}</p>
+        <h3 class="daily-name-title">{{ esma.name }}</h3>
+        <p class="daily-text">{{ esma.meaning or t('esma_desc') }}</p>
+        <button class="btn btn-sm btn-ghost" id="refreshHourly">{{ t('refresh_content') }}</button>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="quick-access">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">{{ t('quick_access') }}</span>
+      <h2>{{ t('reach_services') }}</h2>
+    </div>
+    <div class="quick-grid">
+      <a href="{{ url_for('namaz_vakitleri') }}" class="quick-item">
+        <div class="quick-icon">🕌</div>
+        <span class="quick-title">{{ t('prayer_times') }}</span>
+        <span class="quick-desc">{{ t('prayer_desc') }}</span>
+      </a>
+      <a href="{{ url_for('fetva') }}" class="quick-item">
+        <div class="quick-icon">📞</div>
+        <span class="quick-title">{{ t('fetva_line') }}</span>
+        <span class="quick-desc">{{ t('fatwa_desc') }}</span>
+      </a>
+      <a href="{{ url_for('kuran') }}" class="quick-item">
+        <div class="quick-icon">📗</div>
+        <span class="quick-title">{{ t('quran_link') }}</span>
+        <span class="quick-desc">{{ t('quran_desc') }}</span>
+      </a>
+      <a href="{{ url_for('radyo') }}" class="quick-item">
+        <div class="quick-icon">📻</div>
+        <span class="quick-title">{{ t('nav_radio') }}</span>
+        <span class="quick-desc">{{ t('radio_desc') }}</span>
+      </a>
+      <a href="{{ url_for('ramazan') }}" class="quick-item">
+        <div class="quick-icon">🌙</div>
+        <span class="quick-title">{{ t('nav_ramadan') }}</span>
+        <span class="quick-desc">{{ t('ramadan_desc') }}</span>
+      </a>
+      <a href="{{ url_for('kurban') }}" class="quick-item">
+        <div class="quick-icon">🐑</div>
+        <span class="quick-title">{{ t('nav_eid') }}</span>
+        <span class="quick-desc">{{ t('eid_desc') }}</span>
+      </a>
+      <a href="{{ url_for('hac_umre') }}" class="quick-item">
+        <div class="quick-icon">🕋</div>
+        <span class="quick-title">{{ t('nav_hajj') }}</span>
+        <span class="quick-desc">{{ t('hajj_desc') }}</span>
+      </a>
+      <a href="{{ url_for('hadis') }}" class="quick-item">
+        <div class="quick-icon">📜</div>
+        <span class="quick-title">{{ t('nav_hadith') }}</span>
+        <span class="quick-desc">{{ t('hadith_desc') }}</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="featured-section">
+  <div class="container">
+    <div class="featured-grid">
+      <a href="{{ url_for('ramazan') }}" class="featured-card" style="--featured-bg: url('{{ images.ramadan }}')">
+        <span class="featured-tag">{{ t('nav_ramadan') }}</span>
+        <h3>{{ t('featured_ramadan') }}</h3>
+        <p>{{ t('featured_ramadan_desc') }}</p>
+      </a>
+      <a href="{{ url_for('hac_umre') }}" class="featured-card" style="--featured-bg: url('{{ images.hajj }}')">
+        <span class="featured-tag">{{ t('nav_hajj') }}</span>
+        <h3>{{ t('featured_hajj') }}</h3>
+        <p>{{ t('featured_hajj_desc') }}</p>
+      </a>
+      <a href="{{ url_for('radyo') }}" class="featured-card" style="--featured-bg: url('{{ images.radio }}')">
+        <span class="featured-tag">{{ t('featured_live') }}</span>
+        <h3>{{ t('nav_radio') }}</h3>
+        <p>{{ t('featured_radio_desc') }}</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="news-preview">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">{{ t('news_section') }}</span>
+      <h2>{{ t('news_title') }}</h2>
+    </div>
+    <div class="news-grid">
+      <article class="news-card featured">
+        <div class="news-img" style="background-image: url('{{ images.ramadan }}')"></div>
+        <div class="news-body">
+          <time>15 Haziran 2026</time>
+          <h3>Ramazan Ayı Hazırlık Programları Başladı</h3>
+          <p>Başkanlığımız camilerde ve eğitim merkezlerinde kapsamlı hazırlık programları düzenliyor.</p>
+          <a href="{{ url_for('haberler') }}">{{ t('read_more') }}</a>
+        </div>
+      </article>
+      <article class="news-card">
+        <time>12 Haziran 2026</time>
+        <h3>e-Diyanet Uygulaması Güncellendi</h3>
+        <p>Yeni arayüz ve gelişmiş namaz vakti bildirimleri.</p>
+        <a href="{{ url_for('haberler') }}">{{ t('read_more') }}</a>
+      </article>
+      <article class="news-card">
+        <time>10 Haziran 2026</time>
+        <h3>Hac Kura Sonuçları Açıklandı</h3>
+        <p>2026 yılı hac kurası e-Devlet üzerinden sorgulanabilir.</p>
+        <a href="{{ url_for('haberler') }}">{{ t('read_more') }}</a>
+      </article>
+    </div>
+  </div>
+</section>
+{% endblock %}

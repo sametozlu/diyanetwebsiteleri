@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block title %}{{ page.title }} | {{ t('site_name') }}{% endblock %}
+
+{% block content %}
+<section class="page-hero" style="--page-hero-bg: url('{{ images.hajj }}')">
+  <div class="container">
+    <span class="section-tag light">{{ page.tag }}</span>
+    <h1>{{ page.title }}</h1>
+    <p>{{ page.description }}</p>
+  </div>
+</section>
+
+<section class="page-content">
+  <div class="container">
+    <div class="hac-grid">
+      <article class="hac-card featured">
+        <div class="hac-card-img" style="background-image: url('{{ images.hajj }}')"></div>
+        <div class="hac-card-body">
+          <h2>Hac İbadeti</h2>
+          <p>Hac, gücü yeten Müslümanlara ömründe bir kez farz kılınan büyük ibadettir. Diyanet İşleri Başkanlığı, hacı adaylarına kapsamlı organizasyon ve rehberlik hizmeti sunmaktadır.</p>
+          <ul>
+            <li>Hac kura sistemi ve başvuru</li>
+            <li>Hac eğitim programları</li>
+            <li>Kafile ve uçuş organizasyonu</li>
+            <li>Kutsal mekânlar rehberliği</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="hac-card">
+        <div class="hac-card-img" style="background-image: url('{{ images.mosque }}')"></div>
+        <div class="hac-card-body">
+          <h2>Umre</h2>
+          <p>Umre, yılın herhangi bir zamanında yapılabilen sünnet ibadettir. Diyanet umre organizasyonları ile güvenli ve rehberli ziyaret imkânı.</p>
+        </div>
+      </article>
+
+      <article class="hac-card">
+        <div class="hac-card-img" style="background-image: url('{{ images.istanbul }}')"></div>
+        <div class="hac-card-body">
+          <h2>Kudüs Ziyareti</h2>
+          <p>Mescid-i Aksa ve Kudüs ziyaret programları, manevi bir yolculuk fırsatı sunmaktadır.</p>
+        </div>
+      </article>
+    </div>
+
+    <div class="steps-grid">
+      <div class="step-card"><span class="step-num">1</span><h4>Başvuru</h4><p>e-Devlet veya Diyanet portalı üzerinden başvuru</p></div>
+      <div class="step-card"><span class="step-num">2</span><h4>Eğitim</h4><p>Hac ve umre eğitim programlarına katılım</p></div>
+      <div class="step-card"><span class="step-num">3</span><h4>Kura</h4><p>Elektronik kura ile hacı adayı belirleme</p></div>
+      <div class="step-card"><span class="step-num">4</span><h4>Yolculuk</h4><p>Kafile halinde organize edilen kutsal yolculuk</p></div>
+    </div>
+  </div>
+</section>
+{% endblock %}

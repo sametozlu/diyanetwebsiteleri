@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% block title %}{{ page.title }} | {{ t('site_name') }}{% endblock %}
+
+{% block content %}
+<section class="page-hero" style="--page-hero-bg: url('{{ images.mosque }}')">
+  <div class="container">
+    <span class="section-tag light">{{ page.tag }}</span>
+    <h1>{{ page.title }}</h1>
+    <p>{{ page.description }}</p>
+  </div>
+</section>
+
+<section class="page-content">
+  <div class="container">
+    <div class="fetva-hero-card">
+      <div class="fetva-number">190</div>
+      <div>
+        <h2>7/24 Fetva Danışma Hattı</h2>
+        <p>Yaklaşık 350 fetva vaizi, nöbet sistemiyle dinî sorularınızı cevaplandırır. Din İşleri Yüksek Kurulu koordinasyonunda hizmet verilmektedir.</p>
+        <a href="tel:190" class="btn btn-primary btn-lg">Hemen Ara: 190</a>
+      </div>
+    </div>
+
+    <div class="faq-grid">
+      <details class="faq-item" open>
+        <summary>Namaz nasıl kılınır?</summary>
+        <p>Namaz; abdest alındıktan sonra kıbleye yönelerek, belirli vakitlerde farz, sünnet ve nafile olarak kılınan ibadettir. Detaylı bilgi için ilmihal kaynaklarımıza başvurabilirsiniz.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Oruç kimlere farzdır?</summary>
+        <p>Akıllı, ergen ve sağlıklı her Müslümana Ramazan ayında oruç farzdır. Hastalık, yolculuk gibi durumlarda ruhsatlar mevcuttur.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Zekât kimlere verilir?</summary>
+        <p>Zekât; fakir, miskin, borçlu, yolda kalmış ve benzeri sekiz sınıfa verilir. Güncel nisap miktarları fetva hattından öğrenilebilir.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Yazılı fetva nasıl alınır?</summary>
+        <p>diynet.gov.tr üzerinden üyelik oluşturarak veya e-Devlet "Dinî Soru Sor" hizmetiyle yazılı fetva talebinde bulunabilirsiniz.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Görüntülü fetvalar nerede?</summary>
+        <p>goruntulufetva.diyanet.gov.tr adresinden video formatında fetvalara ulaşabilirsiniz.</p>
+      </details>
+    </div>
+
+    <div class="channels-grid">
+      <div class="channel-card">
+        <h3>📞 Telefon</h3>
+        <p>190 numaralı hattı arayın</p>
+      </div>
+      <div class="channel-card">
+        <h3>💻 İnternet</h3>
+        <p>fetva.diyanet.gov.tr</p>
+      </div>
+      <div class="channel-card">
+        <h3>🏛️ e-Devlet</h3>
+        <p>Dinî Soru Sor hizmeti</p>
+      </div>
+      <div class="channel-card">
+        <h3>📱 Mobil</h3>
+        <p>e-Diyanet uygulaması</p>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

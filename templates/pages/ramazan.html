@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% block title %}{{ page.title }} | {{ t('site_name') }}{% endblock %}
+
+{% block content %}
+<section class="page-hero" style="--page-hero-bg: url('{{ images.ramadan }}')">
+  <div class="container">
+    <span class="section-tag light">{{ page.tag }}</span>
+    <h1>{{ page.title }}</h1>
+    <p>{{ page.description }}</p>
+  </div>
+</section>
+
+<section class="page-content">
+  <div class="container">
+    <div class="toolbar">
+      <label>İmsakiye Şehri</label>
+      <select id="citySelect" class="city-select city-select-lg">
+        {% for c in cities %}
+        <option value="{{ c }}" {% if c == city %}selected{% endif %}>{{ c }}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <div class="ramazan-info-grid">
+      <div class="ramazan-card">
+        <h3>🌙 Ramazan Nedir?</h3>
+        <p>Ramazan, Kur'an-ı Kerim'in indirilmeye başlandığı mübarek aydır. Bu ayda oruç tutmak farzdır ve Müslümanlar manevi bir arınma süreci yaşar.</p>
+      </div>
+      <div class="ramazan-card">
+        <h3>🤲 İftar Duası</h3>
+        <p class="dua-arabic">اَللّٰهُمَّ لَكَ صُمْتُ وَبِكَ اٰمَنْتُ وَعَلٰى رِزْقِكَ اَفْطَرْتُ</p>
+        <p>Allah'ım! Senin rızan için oruç tuttum, Sana inandım ve Senin rızkınla orucumu açtım.</p>
+      </div>
+      <div class="ramazan-card">
+        <h3>📿 Teravih Namazı</h3>
+        <p>Ramazan gecelerinde camilerde kılınan sünnet namazdır. Cemaatle kılınması müstehaptır.</p>
+      </div>
+    </div>
+
+    <div class="monthly-table-wrap">
+      <h3>{{ city }} — Ramazan İmsakiyesi ({{ monthly.month }}/{{ monthly.year }})</h3>
+      <div class="table-scroll">
+        <table class="imsakiye-table imsakiye-ramazan">
+          <thead>
+            <tr><th>Gün</th><th>İmsak</th><th>İftar (Akşam)</th><th>Öğle</th><th>Yatsı</th></tr>
+          </thead>
+          <tbody>
+            {% for day in monthly.days %}
+            <tr>
+              <td><strong>{{ day.day }}</strong></td>
+              <td class="highlight-imsak">{{ day.imsak }}</td>
+              <td class="highlight-iftar">{{ day.aksam }}</td>
+              <td>{{ day.ogle }}</td>
+              <td>{{ day.yatsi }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  document.getElementById('citySelect')?.addEventListener('change', (e) => {
+    window.location.href = `{{ url_for('ramazan') }}?city=${encodeURIComponent(e.target.value)}`;
+  });
+</script>
+{% endblock %}

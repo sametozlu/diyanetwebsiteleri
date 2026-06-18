@@ -1,0 +1,177 @@
+{% extends 'base.html' %}
+{% block title %}{{ page.title }} | {{ t('site_name') }}{% endblock %}
+
+{% block content %}
+<section class="page-hero" style="--page-hero-bg: url('{{ images.quran }}')">
+  <div class="container">
+    <span class="section-tag light">{{ page.tag }}</span>
+    <h1>{{ page.title }}</h1>
+    <p>{{ page.description }}</p>
+  </div>
+</section>
+
+<section class="page-content guides-section">
+  <div class="container">
+    <div class="section-header guides-header">
+      <div>
+        <span class="section-tag">📹 {{ t('guides_title') }}</span>
+        <p class="guides-intro">{{ t('guides_desc') }}</p>
+      </div>
+    </div>
+
+    <div class="guides-grid" id="guidesGrid">
+      {% for guide in guides %}
+      <article class="guide-card {% if not guide.available %}guide-unavailable{% endif %}" data-guide-id="{{ guide.id }}">
+        <div class="guide-card-top">
+          <div class="guide-avatar" style="background: {{ guide.avatar_color }}">{{ guide.initials }}</div>
+          <div class="guide-status {% if guide.available %}online{% else %}offline{% endif %}">
+            {{ t('available_now') if guide.available else t('unavailable') }}
+          </div>
+        </div>
+        <h3 class="guide-name">{{ guide.name }}</h3>
+        <p class="guide-title">{{ guide.title }}</p>
+        <p class="guide-specialty">{{ guide.specialty }}</p>
+        <div class="guide-meta">
+          <span>{{ t('years_exp', n=guide.experience) }}</span>
+          <span>{{ t('session_minutes', n=30) }}</span>
+          <span>{{ guide.languages | join(' · ') }}</span>
+        </div>
+        <div class="guide-actions">
+          <button class="btn btn-primary btn-full guide-video-btn" data-guide-id="{{ guide.id }}" data-guide-name="{{ guide.name }}" {% if not guide.available %}disabled{% endif %}>
+            {{ t('start_video') }}
+          </button>
+          <button class="btn btn-ghost btn-full guide-book-btn" data-guide-id="{{ guide.id }}" data-guide-name="{{ guide.name }}">
+            {{ t('book_appointment') }}
+          </button>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="page-content">
+  <div class="container">
+    <div class="toolbar">
+      <label>{{ t('city') }}</label>
+      <select id="maneviCity" class="city-select city-select-lg">
+        {% for c in cities %}
+        <option value="{{ c }}" {% if c == city %}selected{% endif %}>{{ c }}</option>
+        {% endfor %}
+      </select>
+      <button class="btn btn-primary" id="refreshBundle">{{ t('refresh') }}</button>
+    </div>
+
+    <div class="daily-grid manevi-grid" id="maneviContent">
+      <article class="daily-card daily-verse">
+        <span class="section-tag">{{ t('verse_of_day') }}</span>
+        {% if bundle.verse.chapter %}
+        <span class="daily-ref">{{ t('sure_ayet', sure=bundle.verse.chapter, ayet=bundle.verse.verse) }}</span>
+        {% endif %}
+        {% if bundle.verse.arabic %}<p class="daily-arabic">{{ bundle.verse.arabic }}</p>{% endif %}
+        <p class="daily-text">{{ bundle.verse.text or bundle.verse.turkish }}</p>
+      </article>
+
+      <article class="daily-card daily-hadith">
+        <span class="section-tag">{{ bundle.hadith.collection }}</span>
+        <p class="daily-text">"{{ bundle.hadith.text }}"</p>
+      </article>
+
+      <article class="daily-card daily-name">
+        <span class="section-tag">{{ t('esma_title') }}</span>
+        <h3 class="daily-name-title">{{ bundle.esma.name }}</h3>
+        <p class="daily-text">{{ bundle.esma.meaning or t('esma_desc') }}</p>
+      </article>
+    </div>
+
+    <div class="prayer-detail-card">
+      <h3>{{ bundle.prayer.city }} — {{ t('prayer_times') }}</h3>
+      <p class="daily-ref">Hicrî: {{ bundle.hijri }}</p>
+      <div class="prayer-times">
+        {% for pt in bundle.prayer.timings %}
+        <div class="prayer-time-item {% if pt.key == bundle.prayer.active %}active{% endif %}">
+          <span class="prayer-label">{{ pt.label }}</span>
+          <span class="prayer-value">{{ pt.time }}</span>
+        </div>
+        {% endfor %}
+      </div>
+      {% if bundle.prayer.next %}
+      <div class="next-prayer">
+        <span>{{ t('next_prayer') }}: <strong>{{ bundle.prayer.next.label }}</strong></span>
+        <span>{{ bundle.prayer.next.remaining }}</span>
+      </div>
+      {% endif %}
+    </div>
+
+    <div class="notif-promo-card">
+      <h3>🔔 {{ t('notif_promo_title') }}</h3>
+      <p>{{ t('notif_promo_desc') }}</p>
+      <button class="btn btn-primary" onclick="document.getElementById('notifEnableBtn')?.click()">{{ t('open_notifications') }}</button>
+    </div>
+  </div>
+</section>
+
+<div class="video-modal" id="videoModal" hidden>
+  <div class="video-modal-backdrop" id="videoModalBackdrop"></div>
+  <div class="video-modal-panel">
+    <div class="video-modal-header">
+      <div>
+        <h3 id="videoModalTitle">—</h3>
+        <p id="videoModalSubtitle">{{ t('waiting_guide') }}</p>
+      </div>
+      <button class="video-modal-close" id="videoModalClose" aria-label="{{ t('end_session') }}">✕</button>
+    </div>
+    <div class="video-prejoin" id="videoPrejoin">
+      <p class="video-privacy-note">{{ t('session_privacy') }}</p>
+      <label class="video-form-label">
+        {{ t('your_name') }}
+        <input type="text" id="visitorName" class="video-input" maxlength="40" placeholder="{{ t('your_name') }}">
+      </label>
+      <button class="btn btn-primary btn-lg btn-full" id="videoJoinBtn">{{ t('join_room') }}</button>
+    </div>
+    <div class="video-frame-wrap" id="videoFrameWrap" hidden>
+      <iframe id="videoFrame" allow="camera; microphone; fullscreen; display-capture" title="Manevi görüşme"></iframe>
+    </div>
+    <div class="video-modal-footer">
+      <button class="btn btn-ghost" id="videoEndBtn">{{ t('end_session') }}</button>
+    </div>
+  </div>
+</div>
+
+<div class="video-modal" id="bookModal" hidden>
+  <div class="video-modal-backdrop" id="bookModalBackdrop"></div>
+  <div class="video-modal-panel video-modal-panel-sm">
+    <div class="video-modal-header">
+      <h3>{{ t('book_appointment') }}</h3>
+      <button class="video-modal-close" id="bookModalClose">✕</button>
+    </div>
+    <form id="bookForm" class="book-form">
+      <input type="hidden" id="bookGuideId">
+      <label class="video-form-label">
+        {{ t('your_name') }}
+        <input type="text" id="bookName" class="video-input" required maxlength="60">
+      </label>
+      <label class="video-form-label">
+        {{ t('session_topic') }}
+        <textarea id="bookTopic" class="video-input" rows="3" required maxlength="300"></textarea>
+      </label>
+      <button type="submit" class="btn btn-primary btn-full">{{ t('book_appointment') }}</button>
+    </form>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/manevi_video.js') }}"></script>
+<script>
+  document.getElementById('refreshBundle')?.addEventListener('click', async () => {
+    const city = document.getElementById('maneviCity')?.value || 'Ankara';
+    await fetch(`/api/content/bundle?city=${encodeURIComponent(city)}`);
+    window.spiritualNotif?.toast((window.I18N && window.I18N.content_updated) || 'OK', 'success');
+    setTimeout(() => location.reload(), 600);
+  });
+  document.getElementById('maneviCity')?.addEventListener('change', (e) => {
+    window.location.href = `{{ url_for('manevi_rehber') }}?city=${encodeURIComponent(e.target.value)}`;
+  });
+</script>
+{% endblock %}

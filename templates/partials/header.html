@@ -1,0 +1,60 @@
+<header class="header" id="header">
+  <div class="container header-inner">
+    <a href="{{ url_for('index') }}" class="logo">
+      <img src="{{ images.logo }}" alt="{{ t('site_name') }}" class="logo-emblem" width="48" height="48">
+      <div class="logo-text">
+        <span class="logo-title">{{ t('site_name') }}</span>
+        <span class="logo-subtitle">{{ t('site_subtitle') }}</span>
+      </div>
+    </a>
+
+    <nav class="nav" id="nav">
+      <a href="{{ url_for('index') }}" class="nav-link {% if request.endpoint == 'index' %}active{% endif %}">{{ t('nav_home') }}</a>
+      <a href="{{ url_for('namaz_vakitleri') }}" class="nav-link {% if request.endpoint == 'namaz_vakitleri' %}active{% endif %}">{{ t('nav_prayer') }}</a>
+      <a href="{{ url_for('kuran') }}" class="nav-link {% if request.endpoint == 'kuran' %}active{% endif %}">{{ t('nav_quran') }}</a>
+      <a href="{{ url_for('hadis') }}" class="nav-link {% if request.endpoint == 'hadis' %}active{% endif %}">{{ t('nav_hadith') }}</a>
+      <a href="{{ url_for('fetva') }}" class="nav-link {% if request.endpoint == 'fetva' %}active{% endif %}">{{ t('nav_fatwa') }}</a>
+      <div class="nav-dropdown">
+        <button class="nav-link nav-dropdown-btn">{{ t('nav_services') }} ▾</button>
+        <div class="nav-dropdown-menu">
+          <a href="{{ url_for('ramazan') }}">{{ t('nav_ramadan') }}</a>
+          <a href="{{ url_for('kurban') }}">{{ t('nav_eid') }}</a>
+          <a href="{{ url_for('hac_umre') }}">{{ t('nav_hajj') }}</a>
+          <a href="{{ url_for('radyo') }}">{{ t('nav_radio') }}</a>
+        </div>
+      </div>
+      <a href="{{ url_for('manevi_rehber') }}" class="nav-link {% if request.endpoint == 'manevi_rehber' %}active{% endif %}">{{ t('nav_spiritual') }}</a>
+      <a href="{{ url_for('kurumsal') }}" class="nav-link {% if request.endpoint == 'kurumsal' %}active{% endif %}">{{ t('nav_corporate') }}</a>
+      <a href="{{ url_for('haberler') }}" class="nav-link {% if request.endpoint == 'haberler' %}active{% endif %}">{{ t('nav_news') }}</a>
+      <a href="{{ url_for('iletisim') }}" class="nav-link {% if request.endpoint == 'iletisim' %}active{% endif %}">{{ t('nav_contact') }}</a>
+    </nav>
+
+    <button class="menu-toggle" id="menuToggle" aria-label="{{ t('menu') }}">
+      <span></span><span></span><span></span>
+    </button>
+
+    <div class="header-actions">
+      <div class="notif-wrap">
+        <button class="notif-bell" id="notifBell" aria-label="{{ t('notifications') }}">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+          <span class="notif-badge" id="notifBadge" hidden>●</span>
+        </button>
+        <div class="notif-panel" id="notifPanel">
+          <div class="notif-panel-header">
+            <h4>{{ t('notifications') }}</h4>
+            <button class="btn btn-sm btn-primary" id="notifEnableBtn">{{ t('enable_notifications') }}</button>
+          </div>
+          <div class="notif-settings">
+            <label><input type="checkbox" data-notif-setting="hourlyHadith" checked> {{ t('notif_hourly') }}</label>
+            <label><input type="checkbox" data-notif-setting="dailyVerse" checked> {{ t('notif_verse') }}</label>
+            <label><input type="checkbox" data-notif-setting="dailyHadith" checked> {{ t('notif_hadith') }}</label>
+            <label><input type="checkbox" data-notif-setting="esma" checked> {{ t('notif_esma') }}</label>
+            <label><input type="checkbox" data-notif-setting="toast" checked> {{ t('notif_toast') }}</label>
+          </div>
+          <div class="notif-list" id="notifList"></div>
+          <a href="{{ url_for('manevi_rehber') }}" class="notif-link">{{ t('all_spiritual') }}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

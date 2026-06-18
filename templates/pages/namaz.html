@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% block title %}{{ page.title }} | {{ t('site_name') }}{% endblock %}
+
+{% block content %}
+<section class="page-hero" style="--page-hero-bg: url('{{ images.mosque }}')">
+  <div class="container">
+    <span class="section-tag light">{{ page.tag }}</span>
+    <h1>{{ page.title }}</h1>
+    <p>{{ page.description }}</p>
+  </div>
+</section>
+
+<section class="page-content">
+  <div class="container">
+    <div class="toolbar">
+      <label for="citySelect">Şehir Seçin</label>
+      <select id="citySelect" class="city-select city-select-lg">
+        {% for c in cities %}
+        <option value="{{ c }}" {% if c == city %}selected{% endif %}>{{ c }}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <div class="prayer-detail-card" id="prayerDetail">
+      <div class="prayer-detail-header">
+        <h2>{{ city }} — Bugünün Vakitleri</h2>
+        <p>{{ prayer.gregorian }} · {{ prayer.hijri }}</p>
+      </div>
+      <div class="prayer-times prayer-times-lg">
+        {% for t in prayer.timings %}
+        <div class="prayer-time-item {% if t.key == prayer.active %}active{% endif %}">
+          <span class="prayer-label">{{ t.label }}</span>
+          <span class="prayer-value">{{ t.time }}</span>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="next-prayer next-prayer-lg">
+        <span>Sonraki vakit: <strong>{{ prayer.next.label }}</strong> ({{ prayer.next.time }})</span>
+        <span class="next-countdown">{{ prayer.next.remaining }}</span>
+      </div>
+    </div>
+
+    <div class="monthly-table-wrap">
+      <h3>{{ monthly.month }}/{{ monthly.year }} Aylık İmsakiye — {{ city }}</h3>
+      <div class="table-scroll">
+        <table class="imsakiye-table">
+          <thead>
+            <tr>
+              <th>Gün</th><th>İmsak</th><th>Güneş</th><th>Öğle</th><th>İkindi</th><th>Akşam</th><th>Yatsı</th>
+            </tr>
+          </thead>
+          <tbody id="monthlyBody">
+            {% for day in monthly.days %}
+            <tr>
+              <td><strong>{{ day.day }}</strong> <small>{{ day.weekday[:3] }}</small></td>
+              <td>{{ day.imsak }}</td><td>{{ day.gunes }}</td><td>{{ day.ogle }}</td>
+              <td>{{ day.ikindi }}</td><td>{{ day.aksam }}</td><td>{{ day.yatsi }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  document.getElementById('citySelect')?.addEventListener('change', (e) => {
+    window.location.href = `{{ url_for('namaz_vakitleri') }}?city=${encodeURIComponent(e.target.value)}`;
+  });
+</script>
+{% endblock %}

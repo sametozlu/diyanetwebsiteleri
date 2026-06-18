@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block title %}{{ page.title }} | {{ t('site_name') }}{% endblock %}
+
+{% block content %}
+<section class="page-hero" style="--page-hero-bg: url('{{ images.mosque }}')">
+  <div class="container">
+    <span class="section-tag light">{{ page.tag }}</span>
+    <h1>{{ page.title }}</h1>
+    <p>{{ page.description }}</p>
+  </div>
+</section>
+
+<section class="page-content">
+  <div class="container">
+    <div class="about-full">
+      <div class="about-text">
+        <h2>Tarihçe ve Misyon</h2>
+        <p>Cumhurbaşkanlığına bağlı Diyanet İşleri Başkanlığı; İslam dininin doğru anlaşılması, yaşanması ve öğretilmesi konularında topluma rehberlik etmek, dinî hizmetleri yürütmek ve manevi değerlerimizi korumak amacıyla faaliyet göstermektedir.</p>
+        <p>1924 yılından bu yana kesintisiz hizmet veren Başkanlığımız, 85.000'den fazla cami ve mescit, 120.000'i aşkın din görevlisi ve 100'den fazla ülkede temsilcilik ile Türkiye'nin en geniş hizmet ağına sahip kurumlarından biridir.</p>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-card"><strong>85.000+</strong><span>Cami ve Mescit</span></div>
+        <div class="stat-card"><strong>120.000+</strong><span>Din Görevlisi</span></div>
+        <div class="stat-card"><strong>100+</strong><span>Ülkede Temsilcilik</span></div>
+        <div class="stat-card"><strong>1924</strong><span>Kuruluş Yılı</span></div>
+      </div>
+    </div>
+
+    <div class="mission-grid">
+      <div class="mission-card">
+        <h3>🎯 Misyon</h3>
+        <p>İslam dininin evrensel mesajını, bilimsel ve güvenilir kaynaklara dayanarak topluma ulaştırmak; dinî hizmetlerde öncü olmak.</p>
+      </div>
+      <div class="mission-card">
+        <h3>🔭 Vizyon</h3>
+        <p>Dinî hizmetlerde öncü, dijital dönüşümde lider, toplumsal barışa katkı sağlayan bir kurum olmak.</p>
+      </div>
+      <div class="mission-card">
+        <h3>⚖️ Değerler</h3>
+        <p>İlme dayanma, güvenilirlik, şeffaflık, toplumsal birlik ve beraberlik, evrensel insanî değerler.</p>
+      </div>
+    </div>
+
+    <div class="org-grid">
+      <div class="org-card"><h4>Din İşleri Yüksek Kurulu</h4><p>Fetva ve dinî meseleler</p></div>
+      <div class="org-card"><h4>Eğitim Hizmetleri</h4><p>Kur'an kursları ve eğitim</p></div>
+      <div class="org-card"><h4>Hac ve Umre</h4><p>Kutsal yolculuk organizasyonu</p></div>
+      <div class="org-card"><h4>Din Hizmetleri</h4><p>Cami ve cemaat hizmetleri</p></div>
+      <div class="org-card"><h4>Yurt Dışı Din Hizmetleri</h4><p>Uluslararası temsilcilik</p></div>
+      <div class="org-card"><h4>Gençlik Hizmetleri</h4><p>Gençlik merkezleri</p></div>
+    </div>
+  </div>
+</section>
+{% endblock %}

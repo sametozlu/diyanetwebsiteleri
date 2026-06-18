@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% block title %}{{ page.title }} | {{ t('site_name') }}{% endblock %}
+
+{% block content %}
+<section class="page-hero compact">
+  <div class="container">
+    <span class="section-tag light">Güncel</span>
+    <h1>Haberler ve Duyurular</h1>
+  </div>
+</section>
+
+<section class="page-content">
+  <div class="container">
+    <div class="news-full-grid">
+      <article class="news-full featured">
+        <div class="news-img" style="background-image: url('{{ images.ramadan }}')"></div>
+        <div class="news-body">
+          <time>15 Haziran 2026</time>
+          <span class="news-cat">Ramazan</span>
+          <h2>Ramazan Ayı Hazırlık Programları Başladı</h2>
+          <p>Başkanlığımız, Ramazan ayı öncesinde camilerde ve eğitim merkezlerinde kapsamlı hazırlık programları düzenliyor. Tüm illerde hafızlık yarışmaları, ilmihal dersleri ve manevi sohbet programları planlanmıştır.</p>
+        </div>
+      </article>
+
+      <article class="news-full">
+        <time>12 Haziran 2026</time>
+        <span class="news-cat">Teknoloji</span>
+        <h3>e-Diyanet Mobil Uygulaması Güncellendi</h3>
+        <p>Yeni arayüz ve gelişmiş namaz vakti bildirimleri ile kullanıcı deneyimi iyileştirildi.</p>
+      </article>
+
+      <article class="news-full">
+        <time>10 Haziran 2026</time>
+        <span class="news-cat">Hac</span>
+        <h3>2026 Hac Kura Sonuçları Açıklandı</h3>
+        <p>Hac kurası sonuçları e-Devlet üzerinden sorgulanabilir. Hacı adayları eğitim programlarına davet edilmektedir.</p>
+      </article>
+
+      <article class="news-full">
+        <time>8 Haziran 2026</time>
+        <span class="news-cat">Gençlik</span>
+        <h3>Gençlik Merkezleri Yaz Programı</h3>
+        <p>Diyanet Gençlik Merkezleri'nde yaz dönemi eğitim programları kayıtları başladı.</p>
+      </article>
+
+      <article class="news-full">
+        <time>5 Haziran 2026</time>
+        <span class="news-cat">Kurban</span>
+        <h3>Yurt Dışı Kurban Organizasyonu</h3>
+        <p>2026 yılı yurt dışı kurban organizasyonu başvuruları açıldı.</p>
+      </article>
+
+      <article class="news-full">
+        <time>1 Haziran 2026</time>
+        <span class="news-cat">Eğitim</span>
+        <h3>Kur'an Kursları Yaz Dönemi</h3>
+        <p>Yaz Kur'an kursları kayıtları tüm ilçe müftülüklerinde devam ediyor.</p>
+      </article>
+    </div>
+  </div>
+</section>
+{% endblock %}

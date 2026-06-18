@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% block title %}{{ page.title }} | {{ t('site_name') }}{% endblock %}
+
+{% block content %}
+<section class="page-hero compact">
+  <div class="container">
+    <span class="section-tag light">İletişim</span>
+    <h1>Bize Ulaşın</h1>
+  </div>
+</section>
+
+<section class="page-content">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div>
+            <strong>Adres</strong>
+            <p>Üniversiteler Mah. Dumlupınar Blv. No: 147/A<br>06800 Çankaya / ANKARA</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📞</div>
+          <div>
+            <strong>Telefon</strong>
+            <p>+90 (312) 295 70 00</p>
+            <p><a href="tel:190">190 Fetva Hattı</a></p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">✉️</div>
+          <div>
+            <strong>E-Posta</strong>
+            <p>info@diyanet.gov.tr</p>
+          </div>
+        </div>
+        <div class="contact-map">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3060.0!2d32.75!3d39.92!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMznCsDU1JzEyLjAiTiAzMsKwNDUnMDAuMCJF!5e0!3m2!1str!2str!4v1" width="100%" height="250" style="border:0;border-radius:12px" allowfullscreen loading="lazy"></iframe>
+        </div>
+      </div>
+
+      <form class="contact-form" id="contactForm">
+        <h3>İletişim Formu</h3>
+        <div class="form-group">
+          <label for="name">Ad Soyad</label>
+          <input type="text" id="name" required placeholder="Adınızı giriniz">
+        </div>
+        <div class="form-group">
+          <label for="email">E-Posta</label>
+          <input type="email" id="email" required placeholder="ornek@email.com">
+        </div>
+        <div class="form-group">
+          <label for="subject">Konu</label>
+          <select id="subject">
+            <option>Genel Bilgi</option>
+            <option>Fetva Talebi</option>
+            <option>Hac ve Umre</option>
+            <option>Öneri ve Şikayet</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="message">Mesajınız</label>
+          <textarea id="message" rows="5" required placeholder="Mesajınızı yazınız..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-full">Gönder</button>
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  document.getElementById('contactForm')?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const btn = e.target.querySelector('button');
+    btn.textContent = 'Gönderildi ✓';
+    e.target.reset();
+    setTimeout(() => btn.textContent = 'Gönder', 3000);
+  });
+</script>
+{% endblock %}

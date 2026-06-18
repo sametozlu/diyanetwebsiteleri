@@ -1,0 +1,28 @@
+# Flask
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+.env
+.env.*
+
+# IDE
+.idea/
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Legacy root assets (Flask uses static/)
+/css/
+/js/
+
+# Patch scripts
+_patch_*.py

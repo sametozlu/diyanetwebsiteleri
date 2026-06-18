@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block title %}{{ page.title }} | {{ t('site_name') }}{% endblock %}
+
+{% block content %}
+<section class="page-hero" style="--page-hero-bg: url('{{ images.radio }}')">
+  <div class="container">
+    <span class="section-tag light">{{ page.tag }}</span>
+    <h1>{{ page.title }}</h1>
+    <p>{{ page.description }}</p>
+  </div>
+</section>
+
+<section class="page-content">
+  <div class="container">
+    <div class="radio-stations-grid">
+      {% for key, station in radio_stations.items() %}
+      <article class="radio-station-card" data-station="{{ key }}" data-name="{{ station.name }}" style="--station-color: {{ station.color }}">
+        <div class="radio-station-badge">{{ station.tagline }}</div>
+        <div class="radio-station-visual">
+          <div class="radio-wave"><span></span><span></span><span></span><span></span><span></span></div>
+          <div class="radio-station-icon">{{ station.icon }}</div>
+        </div>
+        <h3>{{ station.name }}</h3>
+        <p class="radio-station-desc">{{ station.description }}</p>
+        <ul class="radio-programs">
+          {% for prog in station.programs %}
+          <li>{{ prog }}</li>
+          {% endfor %}
+        </ul>
+        <button class="btn btn-primary radio-play-btn" data-station="{{ key }}" style="background: {{ station.color }}">
+          <span class="btn-play-text">{{ t('listen') }}</span>
+        </button>
+      </article>
+      {% endfor %}
+    </div>
+
+    <div class="radio-player-panel" id="radioPlayerPanel">
+      <div class="player-now-playing">
+        <span class="live-dot"></span>
+        <div>
+          <p class="player-label" id="nowPlayingTagline">Diyanet İşleri Başkanlığı</p>
+          <h3 id="nowPlayingName">—</h3>
+        </div>
+      </div>
+      <div class="player-controls">
+        <button class="player-btn" id="playerPlayPause" aria-label="Oynat/Durdur">
+          <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor" hidden><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+        </button>
+        <div class="volume-control">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+          <input type="range" id="volumeSlider" min="0" max="100" value="80">
+        </div>
+      </div>
+      <div class="player-status" id="playerStatus">{{ t('stopped') }}</div>
+    </div>
+  </div>
+</section>
+{% endblock %}
