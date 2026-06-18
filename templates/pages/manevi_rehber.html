@@ -123,9 +123,29 @@
     </div>
     <div class="video-prejoin" id="videoPrejoin">
       <p class="video-privacy-note">{{ t('session_privacy') }}</p>
+      <h4>{{ t('prep_form_title') }}</h4>
       <label class="video-form-label">
         {{ t('your_name') }}
         <input type="text" id="visitorName" class="video-input" maxlength="40" placeholder="{{ t('your_name') }}">
+      </label>
+      <label class="video-form-label">
+        {{ t('session_topic') }}
+        <input type="text" id="sessionTopic" class="video-input" maxlength="200">
+      </label>
+      <label class="video-form-label">
+        {{ t('prep_urgency') }}
+        <select id="sessionUrgency" class="video-input">
+          <option value="normal">{{ t('urgency_normal') }}</option>
+          <option value="urgent">{{ t('urgency_urgent') }}</option>
+        </select>
+      </label>
+      <label class="video-form-label">
+        {{ t('prep_notes') }}
+        <textarea id="sessionNotes" class="video-input" rows="2" maxlength="300"></textarea>
+      </label>
+      <label class="video-form-label checkbox-label">
+        <input type="checkbox" id="sessionPrivacy" checked>
+        {{ t('privacy_accept') }}
       </label>
       <button class="btn btn-primary btn-lg btn-full" id="videoJoinBtn">{{ t('join_room') }}</button>
     </div>
@@ -154,6 +174,28 @@
       <label class="video-form-label">
         {{ t('session_topic') }}
         <textarea id="bookTopic" class="video-input" rows="3" required maxlength="300"></textarea>
+      </label>
+      <label class="video-form-label">
+        {{ t('select_slot') }}
+        <select id="bookSlot" class="video-input" required>
+          <option value="">{{ t('appointment_date') }}</option>
+        </select>
+      </label>
+      <label class="video-form-label">
+        {{ t('prep_lang') }}
+        <select id="bookLang" class="video-input">
+          <option value="TR">TR</option>
+          <option value="EN">EN</option>
+          <option value="AR">AR</option>
+        </select>
+      </label>
+      <label class="video-form-label">
+        {{ t('prep_notes') }}
+        <textarea id="bookNotes" class="video-input" rows="2" maxlength="300"></textarea>
+      </label>
+      <label class="video-form-label checkbox-label">
+        <input type="checkbox" id="bookPrivacy" required>
+        {{ t('privacy_accept') }}
       </label>
       <button type="submit" class="btn btn-primary btn-full">{{ t('book_appointment') }}</button>
     </form>

@@ -9,10 +9,23 @@ T.C. Diyanet İşleri Başkanlığı için geliştirilmiş, çok dilli ve etkile
 ## Özellikler
 
 ### Genel
-- **12+ sayfa**: Ana sayfa, namaz, Kur'an, hadis, fetva, Ramazan, kurban, hac-umre, radyo, kurumsal, haberler, iletişim, manevi rehber
-- **Kırmızı-beyaz kurumsal tema** ve gerçek Diyanet logosu
+- **15+ sayfa**: Ana sayfa, namaz, Kur'an, hadis, fetva, Ramazan, kurban, hac-umre, radyo, kurumsal, haberler, iletişim, manevi rehber, **kıble**, **zikirmatik**, **cami bul**
+- **Kırmızı-beyaz kurumsal tema**, karanlık mod ve gerçek Diyanet logosu
 - **3 dil desteği**: Türkçe, İngilizce, Arapça (RTL)
+- **PWA**: Ana ekrana ekleme, offline önbellek
 - Responsive, modern arayüz
+
+### Yeni Araçlar
+- **Canlı namaz geri sayımı** — sonraki vakte kalan süre (sn hassasiyetinde)
+- **Kıble pusulası** — konum + cihaz yönü ile Kabe açısı
+- **Zikirmatik** — dijital tesbih sayacı (33/99/100 hedef)
+- **Kur'an okuyucu** — 114 sure, meal + tilavet sesi
+- **Ramazan geri sayımı** — iftar ve sahur sayacı
+- **Cami / Diyanet merkezi haritası** — OpenStreetMap + yakın arama
+- **Canlı haberler** — Diyanet RSS (yedek: çok dilli statik haber)
+- **Fetva arama** — SSS içinde anahtar kelime arama
+- **Hicrî tarih** — üst barda canlı widget
+- **Namaz vakti bildirimi** — tarayıcı bildirimi (opsiyonel)
 
 ### API Entegrasyonları
 | Servis | Kullanım |
@@ -26,7 +39,8 @@ T.C. Diyanet İşleri Başkanlığı için geliştirilmiş, çok dilli ve etkile
 ### Manevi Rehber — Görüntülü Seans
 - Diyanet manevi danışman profilleri
 - **Görüntülü görüşme** ([Jitsi Meet](https://meet.jit.si) altyapısı)
-- Randevu talep formu
+- **Randevu takvimi** — müsait saat slotları
+- **Görüşme öncesi hazırlık formu** — konu, öncelik, gizlilik onayı
 - Günlük ayet, hadis ve Esma-ül Hüsna
 
 ### Diğer
@@ -81,6 +95,14 @@ diyanetwebsite/
 | `GET /api/content/hadith` | Günün hadisi |
 | `GET /api/radio/stations` | Radyo kanalları |
 | `GET /api/guides` | Manevi rehber listesi |
+| `GET /api/qibla?lat=&lon=` | Kıble açısı ve mesafe |
+| `GET /api/news` | Haberler |
+| `GET /api/fetva/search?q=` | Fetva SSS arama |
+| `GET /api/quran/surah/<n>` | Sure meal + ayetler |
+| `GET /api/mosques?city=` | Cami listesi / harita |
+| `GET /api/ramadan/status?city=` | İftar/sahur geri sayımı |
+| `GET /api/guides/<id>/slots` | Randevu saatleri |
+| `POST /api/guides/<id>/book` | Randevu talebi |
 | `POST /api/guides/<id>/session` | Görüntülü seans odası oluştur |
 
 ## Dil Değiştirme

@@ -35,7 +35,7 @@
       </div>
       <div class="next-prayer">
         <span>{{ t('next_prayer') }}: <strong>{{ prayer.next.label }}</strong></span>
-        <span class="next-countdown">{{ prayer.next.remaining }}</span>
+        <span class="next-countdown" data-seconds="{{ prayer.next.seconds_until }}">{{ prayer.next.remaining }}</span>
       </div>
     </div>
   </div>
@@ -120,6 +120,21 @@
         <span class="quick-title">{{ t('nav_hadith') }}</span>
         <span class="quick-desc">{{ t('hadith_desc') }}</span>
       </a>
+      <a href="{{ url_for('kible') }}" class="quick-item">
+        <div class="quick-icon">🧭</div>
+        <span class="quick-title">{{ t('nav_qibla') }}</span>
+        <span class="quick-desc">{{ t('qibla_desc') }}</span>
+      </a>
+      <a href="{{ url_for('zikir') }}" class="quick-item">
+        <div class="quick-icon">📿</div>
+        <span class="quick-title">{{ t('nav_zikir') }}</span>
+        <span class="quick-desc">{{ t('zikir_desc') }}</span>
+      </a>
+      <a href="{{ url_for('cami_bul') }}" class="quick-item">
+        <div class="quick-icon">📍</div>
+        <span class="quick-title">{{ t('nav_mosque') }}</span>
+        <span class="quick-desc">{{ t('mosque_desc') }}</span>
+      </a>
     </div>
   </div>
 </section>
@@ -153,27 +168,24 @@
       <h2>{{ t('news_title') }}</h2>
     </div>
     <div class="news-grid">
-      <article class="news-card featured">
+      {% for item in news %}
+      <article class="news-card {% if loop.first %}featured{% endif %}">
+        {% if loop.first %}
         <div class="news-img" style="background-image: url('{{ images.ramadan }}')"></div>
         <div class="news-body">
-          <time>15 Haziran 2026</time>
-          <h3>Ramazan Ayı Hazırlık Programları Başladı</h3>
-          <p>Başkanlığımız camilerde ve eğitim merkezlerinde kapsamlı hazırlık programları düzenliyor.</p>
+          <time>{{ item.date }}</time>
+          <h3>{{ item.title }}</h3>
+          <p>{{ item.summary }}</p>
           <a href="{{ url_for('haberler') }}">{{ t('read_more') }}</a>
         </div>
-      </article>
-      <article class="news-card">
-        <time>12 Haziran 2026</time>
-        <h3>e-Diyanet Uygulaması Güncellendi</h3>
-        <p>Yeni arayüz ve gelişmiş namaz vakti bildirimleri.</p>
+        {% else %}
+        <time>{{ item.date }}</time>
+        <h3>{{ item.title }}</h3>
+        <p>{{ item.summary }}</p>
         <a href="{{ url_for('haberler') }}">{{ t('read_more') }}</a>
+        {% endif %}
       </article>
-      <article class="news-card">
-        <time>10 Haziran 2026</time>
-        <h3>Hac Kura Sonuçları Açıklandı</h3>
-        <p>2026 yılı hac kurası e-Devlet üzerinden sorgulanabilir.</p>
-        <a href="{{ url_for('haberler') }}">{{ t('read_more') }}</a>
-      </article>
+      {% endfor %}
     </div>
   </div>
 </section>

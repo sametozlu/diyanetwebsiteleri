@@ -13,7 +13,18 @@ from services.content_service import (
 )
 from services.radio_service import get_radio_stations, get_station
 from services.notification_service import get_spiritual_bundle
-from services.guide_service import get_spiritual_guides, create_video_session
+from services.guide_service import (
+    get_spiritual_guides,
+    create_video_session,
+    get_available_slots,
+    book_appointment,
+)
+from services.qibla_service import calculate_qibla
+from services.quran_service import get_surah_list, get_surah
+from services.news_service import get_news
+from services.fetva_service import get_faq, search_faq
+from services.mosque_service import get_mosques
+from services.ramadan_service import get_ramadan_status
 from services.i18n import normalize_lang, t, SUPPORTED_LANGS, get_page_meta, get_js_strings
 
 app = Flask(__name__)
@@ -40,7 +51,7 @@ def inject_globals():
         "images": resolved_images,
         "current_city": request.args.get("city", "Ankara"),
         "radio_stations": get_radio_stations(lang),
-        "hijri_date": "",
+        "hijri_date": get_hijri_date(lang),
         "lang": lang,
         "dir": "rtl" if lang == "ar" else "ltr",
         "page": get_page_meta(request.endpoint, lang),
@@ -79,6 +90,7 @@ def index():
         esma=get_esma_of_day(lang),
         daily=get_daily_reminder(lang),
         city=city,
+        news=get_news(lang, 3),
     )
 
 
@@ -96,7 +108,12 @@ def namaz_vakitleri():
 
 @app.route("/kuran")
 def kuran():
-    return render_template("pages/kuran.html", verse=get_verse_of_day(get_lang()))
+    lang = get_lang()
+    return render_template(
+        "pages/kuran.html",
+        verse=get_verse_of_day(lang),
+        surahs=get_surah_list(),
+    )
 
 
 @app.route("/hadis")
@@ -106,15 +123,18 @@ def hadis():
 
 @app.route("/fetva")
 def fetva():
-    return render_template("pages/fetva.html")
+    lang = get_lang()
+    return render_template("pages/fetva.html", faq=get_faq(lang))
 
 
 @app.route("/ramazan")
 def ramazan():
     city = request.args.get("city", "Ankara")
     lang = get_lang()
+    lang = get_lang()
     monthly = get_monthly_timings(city)
-    return render_template("pages/ramazan.html", monthly=monthly, city=city)
+    ramadan = get_ramadan_status(city, lang)
+    return render_template("pages/ramazan.html", monthly=monthly, city=city, ramadan=ramadan)
 
 
 @app.route("/kurban")
@@ -139,7 +159,8 @@ def kurumsal():
 
 @app.route("/haberler")
 def haberler():
-    return render_template("pages/haberler.html")
+    lang = get_lang()
+    return render_template("pages/haberler.html", news=get_news(lang))
 
 
 @app.route("/iletisim")
@@ -164,11 +185,109 @@ def api_guides():
     return jsonify(get_spiritual_guides(get_lang()))
 
 
+@app.route("/kible")
+def kible():
+    return render_template("pages/kible.html")
+
+
+@app.route("/zikir")
+def zikir():
+    return render_template("pages/zikir.html")
+
+
+@app.route("/cami-bul")
+def cami_bul():
+    city = request.args.get("city", "Ankara")
+    return render_template("pages/cami_bul.html", city=city, mosques=get_mosques(city))
+
+
+@app.route("/manifest.json")
+def manifest():
+    return app.send_static_file("manifest.json")
+
+
+@app.route("/sw.js")
+def service_worker():
+    resp = app.send_static_file("sw.js")
+    resp.headers["Content-Type"] = "application/javascript"
+    resp.headers["Service-Worker-Allowed"] = "/"
+    return resp
+
+
+@app.route("/api/guides/<guide_id>/slots")
+def api_guide_slots(guide_id):
+    slots = get_available_slots(guide_id, get_lang())
+    if not slots:
+        return jsonify({"error": "not_found"}), 404
+    return jsonify(slots)
+
+
+@app.route("/api/guides/<guide_id>/book", methods=["POST"])
+def api_guide_book(guide_id):
+    data = request.get_json(silent=True) or {}
+    result = book_appointment(guide_id, data, get_lang())
+    if not result:
+        return jsonify({"error": "not_found"}), 404
+    if result.get("error"):
+        return jsonify(result), 400
+    return jsonify(result)
+
+
+@app.route("/api/qibla")
+def api_qibla():
+    try:
+        lat = float(request.args.get("lat", 0))
+        lon = float(request.args.get("lon", 0))
+    except (TypeError, ValueError):
+        return jsonify({"error": "invalid_coords"}), 400
+    if not (-90 <= lat <= 90 and -180 <= lon <= 180):
+        return jsonify({"error": "invalid_coords"}), 400
+    return jsonify(calculate_qibla(lat, lon))
+
+
+@app.route("/api/news")
+def api_news():
+    return jsonify(get_news(get_lang()))
+
+
+@app.route("/api/fetva/search")
+def api_fetva_search():
+    q = request.args.get("q", "")
+    return jsonify(search_faq(q, get_lang()))
+
+
+@app.route("/api/quran/surahs")
+def api_quran_surahs():
+    return jsonify(get_surah_list())
+
+
+@app.route("/api/quran/surah/<int:number>")
+def api_quran_surah(number):
+    return jsonify(get_surah(number, get_lang()))
+
+
+@app.route("/api/mosques")
+def api_mosques():
+    city = request.args.get("city")
+    lat = request.args.get("lat")
+    lon = request.args.get("lon")
+    lat_f = float(lat) if lat else None
+    lon_f = float(lon) if lon else None
+    return jsonify(get_mosques(city, lat_f, lon_f))
+
+
+@app.route("/api/ramadan/status")
+def api_ramadan_status():
+    city = request.args.get("city", "Ankara")
+    return jsonify(get_ramadan_status(city, get_lang()))
+
+
 @app.route("/api/guides/<guide_id>/session", methods=["POST"])
 def api_guide_session(guide_id):
     data = request.get_json(silent=True) or {}
     name = data.get("name", "")
-    session = create_video_session(guide_id, name)
+    prep = data.get("prep") or {}
+    session = create_video_session(guide_id, name, prep)
     if not session:
         return jsonify({"error": "not_found"}), 404
     if session.get("error") == "unavailable":

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %}{{ page.title }} | {{ t('site_name') }}{% endblock %}
+
+{% block content %}
+<section class="page-hero" style="--page-hero-bg: url('{{ images.hajj }}')">
+  <div class="container">
+    <span class="section-tag light">{{ page.tag }}</span>
+    <h1>{{ page.title }}</h1>
+    <p>{{ page.description }}</p>
+  </div>
+</section>
+
+<section class="page-content">
+  <div class="container content-narrow">
+    <div class="qibla-panel">
+      <button class="btn btn-primary btn-lg" id="qiblaLocateBtn">{{ t('get_location') }}</button>
+      <p class="compass-hint">{{ t('compass_hint') }}</p>
+      <div class="qibla-compass-wrap" id="qiblaCompass">
+        <div class="qibla-compass-ring"></div>
+        <div class="qibla-arrow" id="qiblaArrow">🕋</div>
+      </div>
+      <div class="qibla-stats">
+        <div><span>{{ t('qibla_bearing') }}</span><strong id="qiblaBearing">—</strong></div>
+        <div><span>{{ t('qibla_distance') }}</span><strong id="qiblaDistance">—</strong></div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/qibla.js') }}"></script>
+{% endblock %}

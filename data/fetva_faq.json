@@ -1,0 +1,113 @@
+{
+  "tr": [
+    {
+      "question": "Namaz nasıl kılınır?",
+      "answer": "Namaz; abdest alındıktan sonra kıbleye yönelerek, belirli vakitlerde farz, sünnet ve nafile olarak kılınan ibadettir. Detaylı bilgi için ilmihal kaynaklarımıza başvurabilirsiniz.",
+      "tags": "namaz ibadet abdest kıble"
+    },
+    {
+      "question": "Oruç kimlere farzdır?",
+      "answer": "Akıllı, ergen ve sağlıklı her Müslümana Ramazan ayında oruç farzdır. Hastalık, yolculuk gibi durumlarda ruhsatlar mevcuttur.",
+      "tags": "oruç ramazan farz"
+    },
+    {
+      "question": "Zekât kimlere verilir?",
+      "answer": "Zekât; fakir, miskin, borçlu, yolda kalmış ve benzeri sekiz sınıfa verilir. Güncel nisap miktarları fetva hattından öğrenilebilir.",
+      "tags": "zekat sadaka nisap"
+    },
+    {
+      "question": "Yazılı fetva nasıl alınır?",
+      "answer": "diynet.gov.tr üzerinden üyelik oluşturarak veya e-Devlet Dinî Soru Sor hizmetiyle yazılı fetva talebinde bulunabilirsiniz.",
+      "tags": "fetva yazılı internet"
+    },
+    {
+      "question": "Görüntülü fetvalar nerede?",
+      "answer": "goruntulufetva.diyanet.gov.tr adresinden video formatında fetvalara ulaşabilirsiniz.",
+      "tags": "görüntülü video fetva"
+    },
+    {
+      "question": "Abdest nasıl alınır?",
+      "answer": "Abdest, namaz ve Kur'an okumak için gerekli temizliktir. Yüz, kollar, baş mesh ve ayaklar usulüne uygun şekilde yıkanır.",
+      "tags": "abdest temizlik namaz"
+    },
+    {
+      "question": "Kurban ibadeti kimlere farzdır?",
+      "answer": "Hanefi mezhebine göre malî durumu nisap miktarına ulaşan her Müslümana kurban kesmek vaciptir.",
+      "tags": "kurban bayram vacip"
+    }
+  ],
+  "en": [
+    {
+      "question": "How is prayer performed?",
+      "answer": "Prayer is performed facing the Qibla after ablution at prescribed times as obligatory, sunnah or voluntary worship.",
+      "tags": "prayer worship ablution qibla"
+    },
+    {
+      "question": "Who must fast?",
+      "answer": "Every sane, adult and healthy Muslim must fast in Ramadan. Exceptions exist for illness and travel.",
+      "tags": "fasting ramadan obligation"
+    },
+    {
+      "question": "Who receives zakat?",
+      "answer": "Zakat is given to eight categories including the poor, needy and those in debt.",
+      "tags": "zakat charity nisab"
+    },
+    {
+      "question": "How to get a written fatwa?",
+      "answer": "Register at diynet.gov.tr or use the e-Government religious question service.",
+      "tags": "fatwa written online"
+    },
+    {
+      "question": "Where are video fatwas?",
+      "answer": "Visit goruntulufetva.diyanet.gov.tr for video fatwa content.",
+      "tags": "video fatwa"
+    },
+    {
+      "question": "How is ablution performed?",
+      "answer": "Ablution is the ritual washing required before prayer and Quran recitation.",
+      "tags": "ablution wudu prayer"
+    },
+    {
+      "question": "Who must offer sacrifice?",
+      "answer": "According to the Hanafi school, Muslims who meet the nisab threshold should offer sacrifice.",
+      "tags": "eid sacrifice"
+    }
+  ],
+  "ar": [
+    {
+      "question": "كيف تؤدى الصلاة؟",
+      "answer": "الصلاة تؤدى بعد الوضوء مستقبلاً القبلة في أوقاتها المحددة فرضاً وسنة ونافلة.",
+      "tags": "صلاة عبادة وضوء قبلة"
+    },
+    {
+      "question": "من يجب عليه الصيام؟",
+      "answer": "يجب الصيام على كل مسلم بالغ عاقل قادر في رمضان مع وجود رخص للمرض والسفر.",
+      "tags": "صيام رمضان فرض"
+    },
+    {
+      "question": "من يستحق الزكاة؟",
+      "answer": "تُعطى الزكاة لثمانية أصناف منهم الفقراء والمساكين والغارمون.",
+      "tags": "زكاة صدقة نصاب"
+    },
+    {
+      "question": "كيف أحصل على فتوى مكتوبة؟",
+      "answer": "يمكن التسجيل في diynet.gov.tr أو استخدام خدمة السؤال الديني عبر الحكومة الإلكترونية.",
+      "tags": "فتوى مكتوبة"
+    },
+    {
+      "question": "أين الفتاوى المرئية؟",
+      "answer": "على موقع goruntulufetva.diyanet.gov.tr.",
+      "tags": "فتوى فيديو"
+    },
+    {
+      "question": "كيف يؤدى الوضوء؟",
+      "answer": "الوضوء غسل الوجه واليدين ومسح الرأس والرجلين قبل الصلاة وقراءة القرآن.",
+      "tags": "وضوء طهارة صلاة"
+    },
+    {
+      "question": "من يجب عليه الأضحية؟",
+      "answer": "من بلغ نصاب المال يجب عليه الأضحية عند الحنفية.",
+      "tags": "أضحية عيد"
+    }
+  ]
+}

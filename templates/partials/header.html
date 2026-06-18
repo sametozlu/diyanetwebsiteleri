@@ -21,6 +21,9 @@
           <a href="{{ url_for('kurban') }}">{{ t('nav_eid') }}</a>
           <a href="{{ url_for('hac_umre') }}">{{ t('nav_hajj') }}</a>
           <a href="{{ url_for('radyo') }}">{{ t('nav_radio') }}</a>
+          <a href="{{ url_for('kible') }}">{{ t('nav_qibla') }}</a>
+          <a href="{{ url_for('zikir') }}">{{ t('nav_zikir') }}</a>
+          <a href="{{ url_for('cami_bul') }}">{{ t('nav_mosque') }}</a>
         </div>
       </div>
       <a href="{{ url_for('manevi_rehber') }}" class="nav-link {% if request.endpoint == 'manevi_rehber' %}active{% endif %}">{{ t('nav_spiritual') }}</a>
@@ -34,6 +37,8 @@
     </button>
 
     <div class="header-actions">
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="{{ t('dark_mode') }}">🌙</button>
+      <button class="btn btn-sm btn-ghost pwa-install" id="pwaInstallBtn" hidden type="button">{{ t('install_app') }}</button>
       <div class="notif-wrap">
         <button class="notif-bell" id="notifBell" aria-label="{{ t('notifications') }}">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
@@ -50,6 +55,7 @@
             <label><input type="checkbox" data-notif-setting="dailyHadith" checked> {{ t('notif_hadith') }}</label>
             <label><input type="checkbox" data-notif-setting="esma" checked> {{ t('notif_esma') }}</label>
             <label><input type="checkbox" data-notif-setting="toast" checked> {{ t('notif_toast') }}</label>
+            <label><input type="checkbox" data-notif-setting="prayer"> {{ t('notif_prayer') }}</label>
           </div>
           <div class="notif-list" id="notifList"></div>
           <a href="{{ url_for('manevi_rehber') }}" class="notif-link">{{ t('all_spiritual') }}</a>

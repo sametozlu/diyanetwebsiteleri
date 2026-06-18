@@ -1,0 +1,18 @@
+[
+  {"name": "Diyanet İşleri Başkanlığı", "city": "Ankara", "type": "diyanet_center", "lat": 39.9208, "lon": 32.8541, "address": "Üniversiteler Mah. Dumlupınar Blv. No:147"},
+  {"name": "Kocatepe Camii", "city": "Ankara", "type": "mosque", "lat": 39.9167, "lon": 32.8597, "address": "Kocatepe Mah."},
+  {"name": "Hacı Bayram Camii", "city": "Ankara", "type": "mosque", "lat": 39.9419, "lon": 32.8597, "address": "Ulus"},
+  {"name": "İstanbul Müftülüğü", "city": "İstanbul", "type": "diyanet_center", "lat": 41.0082, "lon": 28.9784, "address": "Fatih"},
+  {"name": "Sultanahmet Camii", "city": "İstanbul", "type": "mosque", "lat": 41.0054, "lon": 28.9768, "address": "Sultanahmet"},
+  {"name": "Süleymaniye Camii", "city": "İstanbul", "type": "mosque", "lat": 41.0162, "lon": 28.9639, "address": "Fatih"},
+  {"name": "Eyüp Sultan Camii", "city": "İstanbul", "type": "mosque", "lat": 41.0478, "lon": 28.9344, "address": "Eyüpsultan"},
+  {"name": "İzmir Müftülüğü", "city": "İzmir", "type": "diyanet_center", "lat": 38.4237, "lon": 27.1428, "address": "Konak"},
+  {"name": "Hisar Camii", "city": "İzmir", "type": "mosque", "lat": 38.4192, "lon": 27.1287, "address": "Konak"},
+  {"name": "Bursa Ulu Camii", "city": "Bursa", "type": "mosque", "lat": 40.1826, "lon": 29.0669, "address": "Osmangazi"},
+  {"name": "Konya Müftülüğü", "city": "Konya", "type": "diyanet_center", "lat": 37.8746, "lon": 32.4932, "address": "Meram"},
+  {"name": "Mevlana Camii", "city": "Konya", "type": "mosque", "lat": 37.8713, "lon": 32.5046, "address": "Karatay"},
+  {"name": "Antalya Müftülüğü", "city": "Antalya", "type": "diyanet_center", "lat": 36.8969, "lon": 30.7133, "address": "Muratpaşa"},
+  {"name": "Yivli Minare Camii", "city": "Antalya", "type": "mosque", "lat": 36.8864, "lon": 30.7046, "address": "Kaleiçi"},
+  {"name": "Trabzon Müftülüğü", "city": "Trabzon", "type": "diyanet_center", "lat": 41.0027, "lon": 39.7168, "address": "Ortahisar"},
+  {"name": "Gaziantep Müftülüğü", "city": "Gaziantep", "type": "diyanet_center", "lat": 37.0662, "lon": 37.3833, "address": "Şahinbey"}
+]

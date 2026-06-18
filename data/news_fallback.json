@@ -1,0 +1,26 @@
+{
+  "tr": [
+    {"title": "Ramazan Ayı Hazırlık Programları Başladı", "summary": "Başkanlığımız camilerde ve eğitim merkezlerinde kapsamlı hazırlık programları düzenliyor.", "date": "15 Haziran 2026", "category": "Ramazan", "link": "https://www.diyanet.gov.tr", "image": "ramadan"},
+    {"title": "e-Diyanet Uygulaması Güncellendi", "summary": "Yeni arayüz ve gelişmiş namaz vakti bildirimleri ile kullanıcı deneyimi iyileştirildi.", "date": "12 Haziran 2026", "category": "Teknoloji", "link": "https://www.diyanet.gov.tr"},
+    {"title": "Hac Kura Sonuçları Açıklandı", "summary": "2026 yılı hac kurası e-Devlet üzerinden sorgulanabilir.", "date": "10 Haziran 2026", "category": "Hac", "link": "https://www.diyanet.gov.tr"},
+    {"title": "Gençlik Merkezleri Yaz Programı", "summary": "Diyanet Gençlik Merkezleri'nde yaz dönemi eğitim programları kayıtları başladı.", "date": "8 Haziran 2026", "category": "Gençlik", "link": "https://www.diyanet.gov.tr"},
+    {"title": "Yurt Dışı Kurban Organizasyonu", "summary": "2026 yılı yurt dışı kurban organizasyonu başvuruları açıldı.", "date": "5 Haziran 2026", "category": "Kurban", "link": "https://www.diyanet.gov.tr"},
+    {"title": "Kur'an Kursları Yaz Dönemi", "summary": "Yaz Kur'an kursları kayıtları tüm ilçe müftülüklerinde devam ediyor.", "date": "1 Haziran 2026", "category": "Eğitim", "link": "https://www.diyanet.gov.tr"}
+  ],
+  "en": [
+    {"title": "Ramadan Preparation Programs Launched", "summary": "Comprehensive preparation programs are held in mosques and education centers nationwide.", "date": "15 June 2026", "category": "Ramadan", "link": "https://www.diyanet.gov.tr"},
+    {"title": "e-Diyanet App Updated", "summary": "New interface and improved prayer time notifications enhance user experience.", "date": "12 June 2026", "category": "Technology", "link": "https://www.diyanet.gov.tr"},
+    {"title": "Hajj Lottery Results Announced", "summary": "2026 Hajj lottery results can be queried via e-Government.", "date": "10 June 2026", "category": "Hajj", "link": "https://www.diyanet.gov.tr"},
+    {"title": "Youth Centers Summer Program", "summary": "Summer education program registrations have started at Diyanet Youth Centers.", "date": "8 June 2026", "category": "Youth", "link": "https://www.diyanet.gov.tr"},
+    {"title": "Overseas Sacrifice Organization", "summary": "Applications for 2026 overseas sacrifice organization are open.", "date": "5 June 2026", "category": "Eid", "link": "https://www.diyanet.gov.tr"},
+    {"title": "Quran Courses Summer Term", "summary": "Summer Quran course registrations continue at district mufti offices.", "date": "1 June 2026", "category": "Education", "link": "https://www.diyanet.gov.tr"}
+  ],
+  "ar": [
+    {"title": "انطلاق برامج التحضير لرمضان", "summary": "تُنظم برامج تحضير شاملة في المساجد ومراكز التعليم على مستوى البلاد.", "date": "15 يونيو 2026", "category": "رمضان", "link": "https://www.diyanet.gov.tr"},
+    {"title": "تحديث تطبيق الديانة الإلكتروني", "summary": "واجهة جديدة وتنبيهات محسّنة لأوقات الصلاة.", "date": "12 يونيو 2026", "category": "تقنية", "link": "https://www.diyanet.gov.tr"},
+    {"title": "إعلان نتائج قرعة الحج", "summary": "يمكن الاستعلام عن نتائج قرعة الحج 2026 عبر الحكومة الإلكترونية.", "date": "10 يونيو 2026", "category": "الحج", "link": "https://www.diyanet.gov.tr"},
+    {"title": "برنامج صيف مراكز الشباب", "summary": "بدأ التسجيل في برامج التعليم الصيفية بمراكز شباب الديانة.", "date": "8 يونيو 2026", "category": "شباب", "link": "https://www.diyanet.gov.tr"},
+    {"title": "تنظيم الأضاحي في الخارج", "summary": "فُتحت طلبات تنظيم الأضاحي في الخارج لعام 2026.", "date": "5 يونيو 2026", "category": "الأضحى", "link": "https://www.diyanet.gov.tr"},
+    {"title": "دورات القرآن الصيفية", "summary": "تستمر تسجيلات دورات القرآن الصيفية في مكاتب المفتشيات.", "date": "1 يونيو 2026", "category": "تعليم", "link": "https://www.diyanet.gov.tr"}
+  ]
+}

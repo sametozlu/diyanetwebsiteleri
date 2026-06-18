@@ -80,6 +80,13 @@ function updatePrayerCard(data) {
   const next = card.querySelector('.next-prayer');
   if (next && data.next) {
     const label = i18n('next_prayer', 'Sonraki');
-    next.innerHTML = `<span>${label}: <strong>${data.next.label}</strong></span><span class="next-countdown">${data.next.remaining}</span>`;
+    const secs = data.next.seconds_until || 0;
+    next.innerHTML = `<span>${label}: <strong>${data.next.label}</strong></span><span class="next-countdown" data-seconds="${secs}">${data.next.remaining}</span>`;
+    if (window.prayerCountdown) {
+      window.prayerCountdown.seconds = secs;
+      window.prayerCountdown.el = next.querySelector('.next-countdown');
+      clearInterval(window.prayerCountdown.timer);
+      if (secs > 0) window.prayerCountdown.start();
+    }
   }
 }

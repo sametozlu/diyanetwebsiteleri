@@ -1,0 +1,19 @@
+{
+  "name": "Diyanet Web Portalı",
+  "short_name": "Diyanet",
+  "description": "Namaz vakitleri, Kur'an, hadis, radyo ve manevi rehberlik",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fef5f5",
+  "theme_color": "#e31919",
+  "orientation": "portrait-primary",
+  "lang": "tr",
+  "icons": [
+    {
+      "src": "/static/images/diyanet-logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

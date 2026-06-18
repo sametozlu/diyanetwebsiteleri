@@ -13,7 +13,7 @@
 <section class="page-content">
   <div class="container">
     <div class="toolbar">
-      <label>İmsakiye Şehri</label>
+      <label>{{ t('city') }}</label>
       <select id="citySelect" class="city-select city-select-lg">
         {% for c in cities %}
         <option value="{{ c }}" {% if c == city %}selected{% endif %}>{{ c }}</option>
@@ -21,28 +21,44 @@
       </select>
     </div>
 
+    <div class="ramadan-countdown-grid">
+      <div class="ramadan-countdown-card">
+        <span class="section-tag">{{ t('iftar_in') }}</span>
+        <div class="countdown-big" id="iftarCountdown">--:--:--</div>
+        <small>{{ ramadan.iftar.time if ramadan.iftar else '' }}</small>
+      </div>
+      <div class="ramadan-countdown-card">
+        <span class="section-tag">{{ t('suhoor_in') }}</span>
+        <div class="countdown-big" id="suhoorCountdown">--:--:--</div>
+        <small>{{ ramadan.suhoor.time if ramadan.suhoor else '' }}</small>
+      </div>
+      <div class="ramadan-countdown-card highlight">
+        <span class="section-tag">{{ t('hijri_calendar') }}</span>
+        <p id="fastingDay">{{ ramadan.hijri }}</p>
+      </div>
+    </div>
+
     <div class="ramazan-info-grid">
       <div class="ramazan-card">
-        <h3>🌙 Ramazan Nedir?</h3>
-        <p>Ramazan, Kur'an-ı Kerim'in indirilmeye başlandığı mübarek aydır. Bu ayda oruç tutmak farzdır ve Müslümanlar manevi bir arınma süreci yaşar.</p>
+        <h3>🌙 Ramazan</h3>
+        <p>{{ page.description }}</p>
       </div>
       <div class="ramazan-card">
         <h3>🤲 İftar Duası</h3>
         <p class="dua-arabic">اَللّٰهُمَّ لَكَ صُمْتُ وَبِكَ اٰمَنْتُ وَعَلٰى رِزْقِكَ اَفْطَرْتُ</p>
-        <p>Allah'ım! Senin rızan için oruç tuttum, Sana inandım ve Senin rızkınla orucumu açtım.</p>
       </div>
       <div class="ramazan-card">
-        <h3>📿 Teravih Namazı</h3>
-        <p>Ramazan gecelerinde camilerde kılınan sünnet namazdır. Cemaatle kılınması müstehaptır.</p>
+        <h3>📿 Teravih</h3>
+        <p>{{ t('featured_ramadan_desc') }}</p>
       </div>
     </div>
 
     <div class="monthly-table-wrap">
-      <h3>{{ city }} — Ramazan İmsakiyesi ({{ monthly.month }}/{{ monthly.year }})</h3>
+      <h3>{{ city }} — {{ monthly.month }}/{{ monthly.year }}</h3>
       <div class="table-scroll">
         <table class="imsakiye-table imsakiye-ramazan">
           <thead>
-            <tr><th>Gün</th><th>İmsak</th><th>İftar (Akşam)</th><th>Öğle</th><th>Yatsı</th></tr>
+            <tr><th>Gün</th><th>İmsak</th><th>İftar</th><th>Öğle</th><th>Yatsı</th></tr>
           </thead>
           <tbody>
             {% for day in monthly.days %}
@@ -63,6 +79,7 @@
 {% endblock %}
 
 {% block extra_js %}
+<script src="{{ url_for('static', filename='js/ramadan.js') }}"></script>
 <script>
   document.getElementById('citySelect')?.addEventListener('change', (e) => {
     window.location.href = `{{ url_for('ramazan') }}?city=${encodeURIComponent(e.target.value)}`;

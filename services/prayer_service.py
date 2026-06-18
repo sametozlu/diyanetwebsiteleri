@@ -101,14 +101,34 @@ def _next_vakit(timings, lang="tr"):
         t = _parse_time(item["time"])
         if t > now:
             diff = t - now
-            hours, rem = divmod(int(diff.total_seconds()), 3600)
-            minutes = rem // 60
-            return {"label": item["label"], "time": item["time"], "remaining": format_remaining(hours, minutes, lang)}
+            secs = int(diff.total_seconds())
+            hours, rem = divmod(secs, 3600)
+            minutes, seconds = divmod(rem, 60)
+            return {
+                "key": item["key"],
+                "label": item["label"],
+                "time": item["time"],
+                "remaining": format_remaining(hours, minutes, lang),
+                "seconds_until": secs,
+                "hours": hours,
+                "minutes": minutes,
+                "seconds": seconds,
+            }
     tomorrow = _parse_time(timings[0]["time"]) + timedelta(days=1)
     diff = tomorrow - now
-    hours, rem = divmod(int(diff.total_seconds()), 3600)
-    minutes = rem // 60
-    return {"label": timings[0]["label"], "time": timings[0]["time"], "remaining": format_remaining(hours, minutes, lang)}
+    secs = int(diff.total_seconds())
+    hours, rem = divmod(secs, 3600)
+    minutes, seconds = divmod(rem, 60)
+    return {
+        "key": timings[0]["key"],
+        "label": timings[0]["label"],
+        "time": timings[0]["time"],
+        "remaining": format_remaining(hours, minutes, lang),
+        "seconds_until": secs,
+        "hours": hours,
+        "minutes": minutes,
+        "seconds": seconds,
+    }
 
 
 def _fallback_timings(lang="tr"):
